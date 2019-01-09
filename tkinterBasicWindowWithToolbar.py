@@ -30,7 +30,7 @@ class MyWindow(tkinter.Frame):
         label.pack()
         label.bind("<1>", self.quit)
 
-        self.master.title("Simple menu")
+        self.master.title("Simple Demo")
         
         menubar = Menu(self.master)
         self.master.config(menu=menubar)
@@ -38,6 +38,14 @@ class MyWindow(tkinter.Frame):
         fileMenu = Menu(menubar)
         fileMenu.add_command(label="Exit", command=self.quit)
         menubar.add_cascade(label="File", menu=fileMenu)
+
+        self.variable=tkinter.StringVar()        
+        self.label=tkinter.Label(self, bd=1, relief=tkinter.SUNKEN, anchor=tkinter.W, textvariable=self.variable,
+                            font=('arial',10,'normal'))
+        self.variable.set('Status Bar')
+        self.label.pack(fill=tkinter.X)   
+
+        
         
 
     def quit(sel, event=None):
