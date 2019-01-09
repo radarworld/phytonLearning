@@ -37,7 +37,7 @@ root = tkinter.Tk()
 #Geometry manager Pack. Pack a widget in the parent widget.
 MyWindow(root).pack()
 
-#tk.mainloop() blocks. What that means is that execution of your python program halts there
+#tk.mainloop() blocks.  What that means is that execution of your python program halts there
 root.mainloop()
 
 
