@@ -14,7 +14,7 @@ class MyWindow(tkinter.Frame):
         #method, in that this method always runs. Init is short of initialize,
         #and whatever you put in here is going to always run whenever the class
         #is called upon. The other methods will only run when you specifically
-        #call upon them to run.
+        #call upon them to run..
         
         #subclassing (inheriting from) the Tkinter class Frame.This means
         #instances of your class are also instances of Frame, and can be
