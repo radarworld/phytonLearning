@@ -1,0 +1,33 @@
+Python Classes:
+  Classes intitalise METHOD1:
+  --------------------------------------
+  >>> class User:
+	pass
+
+  >>> user1=User()
+  >>> user1.first_name ="Dave"
+  >>> user1.last_name = "Bowman"
+  >>> user1.last_name = "Bowman"
+  >>> user2.first_name ="Smith"
+  >>> dir(User())
+  ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__']
+
+  >>> vars(User())
+  {}
+  >>> vars(user2)
+  {'first_name': 'Smith'}
+  >>> vars(user1)
+  {'first_name': 'Dave', 'last_name': 'Bowman'}
+
+
+  Classes Initialise METHOD2:
+  -------------------------------------
+  >>> class User:
+	  def __init__(self, full_name, birthday):
+		  self.name = full_name
+		  self.birthday = birthday
+  >>> user = User("Dave Bowmann","19751201")
+  >>> print(user.name)
+  Dave Bowmann
+  >>> vars(user)
+  {'name': 'Dave Bowmann', 'birthday': '19751201'}
