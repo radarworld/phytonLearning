@@ -35,7 +35,7 @@ class MainWindow(Frame):
         #label.pack()
         #label.bind("<1>", self.quit)
 
-        #self.master.title("Simple Demo")
+        self.master.title("Simple Demo")
 
         
         menubar = Menu(topWindow)
@@ -61,13 +61,16 @@ class MainWindow(Frame):
 
 
         spaceHolder = Label(topWindow, text="radio buttons", bd=1, relief=SUNKEN, anchor=W)
+        spaceHolder.grid(row=0, column=0)
 
 
-        spaceHolder2 = Label(topWindow, text="graph", bd=1, relief=SUNKEN, anchor=W)
+        spaceHolder2 = Label(topWindow, text="graph", bd=1, relief=SUNKEN, anchor=E)
+        spaceHolder2.grid(row=0, column=1)
 
         
 
         statusBar = Label(topWindow, text="status bar...", bd=1, relief=SUNKEN, anchor=W)
+        statusBar.grid(row=1, column=0, columnspan=1)
 
         
 
