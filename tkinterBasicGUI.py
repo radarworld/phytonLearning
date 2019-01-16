@@ -70,9 +70,10 @@ class MainWindow(Frame):
         spaceHolder2 = Label(topWindow, text="graph", bd=4, relief=SUNKEN, anchor=W)
         spaceHolder2.grid(row=0, column=1, sticky = W+E+N+S)
 
-        scrolled_text = ScrolledText(topWindow, state='disabled', height=5)
+        scrolled_text = ScrolledText(topWindow, height=5)
         scrolled_text.configure(font='TkFixedFont')
         scrolled_text.tag_config('INFO', foreground='black')
+        scrolled_text.insert(END, "hello")
         scrolled_text.grid(row=1, column=0, columnspan=2, sticky = W+E+N+S)
 
         
@@ -95,7 +96,7 @@ class MainWindow(Frame):
     def quit():
         root.destroy()
 
-    def updateTime(self):     
+    def updateStatusBar(self):     
         text=self.statusbarText.get()
         now = datetime.datetime.now()
 
@@ -105,16 +106,16 @@ class MainWindow(Frame):
         statusBarTextList.append(statusBarCurrentMsgExtended)
         
         statusBarCurrentState="Status: Connected via SER"
-        statusBarCurrentMsgExtended=statusBarCurrentState.ljust(len(statusBarCurrentState)+70 )       
+        statusBarCurrentMsgExtended=statusBarCurrentState.ljust(len(statusBarCurrentState)+80 )       
         statusBarTextList.append(statusBarCurrentMsgExtended)
                                                                 
-        statusBarCurrentTime=now.strftime("Time: %d-%m-%Y %H:%M:%S")        
+        statusBarCurrentTime=now.strftime("%d.%m.%Y %H:%M:%S")        
         statusBarTextList.append(statusBarCurrentTime)
         
         self.statusbarText.set(''.join(statusBarTextList))
         
         self.statusBar.grid(row=2, column=0, columnspan=2, sticky = W+E+N+S)
-        self.after(1000,self.updateTime)
+        self.after(1000,self.updateStatusBar)
         
         
         
@@ -124,7 +125,8 @@ class MainWindow(Frame):
 #The command below also creates the root window.
 #print (type(MainWindow))
 root = Tk()
-MainWindow(root).updateTime()
+MainWindow(root).updateStatusBar()
+print(updateLog())
 
 
 #Geometry manager Pack. Pack a widget in the parent widget with the grid() builder.
