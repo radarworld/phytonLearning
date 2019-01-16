@@ -3,6 +3,8 @@ from tkinter import Tk, Frame, Menu, messagebox, W, E, N, S
 from tkinter.ttk import Separator, Style
 from tkinter.scrolledtext import ScrolledText
 import sys
+import datetime
+from radarControls import *
 
 '''This is an example of the tkinter class to learn the basics'''
 
@@ -75,16 +77,13 @@ class MainWindow(Frame):
 
         
 
-        statusBar = Label(topWindow, text="status bar....", bd=1, relief=SUNKEN, anchor=W)
-        statusBar.grid(row=2, column=0, columnspan=2, sticky = W+E+N+S)
+        self.statusbarText=StringVar()
+        self.statusBar = Label(topWindow, textvariable=self.statusbarText, bd=1, relief=SUNKEN, anchor=W)
+        #self.statusBar.grid(row=2, column=0, columnspan=2, sticky = W+E+N+S)
+
 
         #sep = Separator(topWindow, orient="vertical")
         #sep.grid(row=0, column=1, sticky="ns")
-
-
-
-
-
 
         
     def helpMenu_About():
@@ -95,9 +94,38 @@ class MainWindow(Frame):
     
     def quit():
         root.destroy()
+
+    def updateTime(self):     
+        text=self.statusbarText.get()
+        now = datetime.datetime.now()
+
+        statusBarTextList=list()
+        statusBarCurrentMsg="Version: RadarWorld 1.0"
+        statusBarCurrentMsgExtended=statusBarCurrentMsg.ljust(len(statusBarCurrentMsg)+90)
+        statusBarTextList.append(statusBarCurrentMsgExtended)
+        
+        statusBarCurrentState="Status: Connected via SER"
+        statusBarCurrentMsgExtended=statusBarCurrentState.ljust(len(statusBarCurrentState)+70 )       
+        statusBarTextList.append(statusBarCurrentMsgExtended)
+                                                                
+        statusBarCurrentTime=now.strftime("Time: %d-%m-%Y %H:%M:%S")        
+        statusBarTextList.append(statusBarCurrentTime)
+        
+        self.statusbarText.set(''.join(statusBarTextList))
+        
+        self.statusBar.grid(row=2, column=0, columnspan=2, sticky = W+E+N+S)
+        self.after(1000,self.updateTime)
+        
+        
+        
+        
+
 #Tk is a class and it will be copied to the root variable. So Tk object can be referreed as root variable.        
 #The command below also creates the root window.
+#print (type(MainWindow))
 root = Tk()
+MainWindow(root).updateTime()
+
 
 #Geometry manager Pack. Pack a widget in the parent widget with the grid() builder.
 MainWindow(root).grid()
